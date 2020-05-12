@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Konuşma Arkadasım </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="story-container">
+<div class="story-header">
+  <h3><b>Kaplumbağa ile Tavşan</b></h3>
+</div>
+ <p class="story-text"><b>Günlerden bir gün, kaplumbağa tavşanın karşısına geçmiş:
+  “Ben senden daha hızlı koşarım!” demiş. Tavşan: “Git işine!” demişse de dinletememiş. 
+  Sonunda bakmış olmayacak, yarış etmeye hazır olmuş. Gün gösterip sözleşmişler, sonra ayrılmışlar. 
+  Günü gelmiş. Tavşan nasıl koştuğunu biliyor ya! hiç aldırmamış, yolun kıyısına kıvrılmış, uyumuş; 
+  ama kaplumbağa koşamayacağını biliyor, bir dakikasını bile geçirmemiş, hemen yola düzülmüş, gidecekleri 
+  yere tavşandan önce varmış.Çalışmak bazen doğuştan gelme güçleri de alt eder, hele doğuştan vergili olan tembellik ederse!</b></p>
+</div>
+<div class="buttons">
+  <ion-button color="" class="background"  expand="block" (click)="RecordAudio()"></ion-button>
+  <ion-button color="" class="background3" expand="block" (click)="DurationTimer()"></ion-button>
+  <ion-button color="" class="background2" expand="block" (click)="StopRecording()">
+    <input type="file" accept="/*" ng2FileSelect [uploader]="fileUploader" multiple /> 
+  </ion-button>
+</div>
+<h3>{{status}}</h3>
+<h3>{{ time | async }}</h3>
+<div>
+</div>
+
+</ion-content>
+<ion-footer>
+  <ul>
+    <li *ngFor="let item of fileUploader.queue">
+      {{ item?.file?.name }}
+    </li>
+  </ul>
+  <ion-button color="light"  expand="block" (click)="goOfferPage()">Önerilen Kelimeler</ion-button>
+</ion-footer>

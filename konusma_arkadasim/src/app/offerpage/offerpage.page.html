@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Önerilen Kelimeler </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="background">
+<!--Sınıflandırıcıdan gelen kelimeler yer alır -->
+<ion-avatar class="offer-img-container">
+  <img class="offer-image" src="../../assets/images/asker.jpg">
+</ion-avatar>
+<div class="offer-header-container">
+  <h3><b>ASKER</b></h3>
+</div>
+<p class="offer-text">Kelimeyi söylemeden önce kayıtı başlatmalısın :)</p>
+
+<div class="offer-button-ortala">
+  <ion-button class="background" (click)="RecordAudio()" ></ion-button>
+  <ion-button class="background2" (click)="StopRecording()"  expand="block">
+    <input type="file" accept="/*" ng2FileSelect [uploader]="fileUploader" multiple />
+  </ion-button>
+</div>
+<h3>{{status}}</h3>
+<h3>{{ time | async }}</h3>
+</ion-content>
+<!--
+<div class="rightOrWrong">
+  <p class="motivation-container"*ngIf="kelime == soylenen">Doğru</p>
+  <img class="motivation-right-gif" src="../../assets/gifs/tenor.gif">
+</div>
+-->
+<ul>
+  <li *ngFor="let item of fileUploader.queue">
+    {{ item?.file?.name }}
+  </li>
+</ul>
+
+
+<!--
+<ion-content>
+  <ion-button (click)="GetUserDetailsDJANGO()"> Get User Details </ion-button>
+  <ion-list *ngFor = "let users of userDetailsDJANGO">
+    <ion-item>
+      {{users.word}}  
+    </ion-item>
+    <ion-avatar>
+      <img src="http://127.0.0.1:8000{{users.image}}" />
+    </ion-avatar>
+      
+  </ion-list>
+</ion-content>
+-->

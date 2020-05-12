@@ -1,0 +1,37 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Giris Yap</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="background">
+  <!--
+   <ion-button (click)="deneme()">buton</ion-button>
+   <ion-button *ngFor="let a of dizi"> {{a}}</ion-button>
+   <p *ngIf="kosul">Kosul saglandı</p>
+  <ion-button href="/page-one">Sayfa gecis</ion-button>-->z
+  <div class="ortala">
+   <ion-list  >
+  
+    <ion-item>
+      <ion-label position="stacked">Ad Soyad <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input [(ngModel)]="input.username" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Parola<ion-text color="danger">*</ion-text></ion-label>
+      <ion-input [(ngModel)]="input.password" type="password" ></ion-input>
+    </ion-item>
+
+ </ion-list>
+</div>
+<div class="ion-padding">
+  <ion-button expand="block" type="submit" class="ion-no-margin" (click)="onLoginUser() ">Giriş Yap</ion-button>
+
+</div>
+
+ </ion-content>

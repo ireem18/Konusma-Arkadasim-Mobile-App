@@ -1,0 +1,7 @@
+{
+  "name": "deneme",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

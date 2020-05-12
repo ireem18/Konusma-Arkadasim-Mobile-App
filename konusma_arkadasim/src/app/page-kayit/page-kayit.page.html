@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Kayıt Ol</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content fullscreen class="background">
+  <div class="ortala"> 
+   
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">Ad Soyad <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input [(ngModel)]="register.username" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Parola<ion-text color="danger">*</ion-text></ion-label>
+        <ion-input [(ngModel)]="register.password" type="password" ></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="stacked"> E-mail <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input [(ngModel)]="register.email" ></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" class="ion-no-margin" (click)="SendData() ">Create account</ion-button>
+   
+    </div>
+
+</div>
+</ion-content>
