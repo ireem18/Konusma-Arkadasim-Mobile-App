@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import {PageGirisPage} from '../page-giris/page-giris.page';
-
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-page-kayit',
@@ -17,7 +18,7 @@ export class PageKayitPage implements OnInit {
   dataFromService:any="";
   dataFromService2:any="";
 
-  constructor(private userService:UserService,private router:Router) { }
+  constructor(private userService:UserService,private router:Router,private http:HttpClient) { }
 
   ngOnInit() {
     this.register = {
@@ -30,6 +31,8 @@ export class PageKayitPage implements OnInit {
     this.userService.registerNewUser(this.register).subscribe(
       response =>{
         alert('Kişi '+ this.register.username + 'hesap oluturuldu');
+        this.router.navigate(['page-giris']);
+
       }, err => {
         error => console.log('error ', error);
       }
@@ -50,13 +53,12 @@ export class PageKayitPage implements OnInit {
     (dataReturnFromService)=>{
       this.dataFromService = JSON.stringify
       (dataReturnFromService);
+      console.log(dataReturnFromService);
     })
-    this.router.navigate(['page-giris']);
   }
 
   goLoginPage(){
     this.router.navigate(['page-giris']);
-  }
-
-
+  } 
+  
 }

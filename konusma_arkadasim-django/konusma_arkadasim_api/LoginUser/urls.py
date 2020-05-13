@@ -1,12 +1,15 @@
-from django.urls import path
-
-from LoginUser.views import  UserView
+from django.urls import include, path
+from rest_framework import routers
 from rest_framework.authtoken.views import ObtainAuthToken
 
-app_name = "articles"
+from . import views
 
-# app_name will help us do a reverse look-up latter.
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+
+# Wire up our API using automatic URL routing.
+# Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    path('users/', UserView.as_view()),
+    path('', include(router.urls)),
     path('auth/', ObtainAuthToken.as_view())
 ]

@@ -141,6 +141,7 @@ REST_FRAMEWORK = { # rest_frameworkun gerekli JSON dosyası vesair çekebilmek i
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
+
     }
 
 CORS_ORIGIN_ALLOW_ALL = True    # veri çek al yapabilmesi için true dedik
