@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import {ProjectPagePage} from '../project-page/project-page.page';
 import {PageKayitPage} from '../page-kayit/page-kayit.page';
 import { UserService } from '../user.service';
@@ -30,13 +30,19 @@ export class PageGirisPage implements OnInit {
     //Kayıt olma sayfasına gider
      this.router.navigate(['page-kayit']);
    }
+  
 
    onLoginUser(){
+     let navigateExtra: NavigationExtras = {
+       queryParams:{
+         special: this.input.username,
+       }
+     }
     this.userService.LoginUser(this.input).subscribe(
       response =>{
         console.log(response);
         alert('Kişi '+ this.input.username + 'logged');
-        this.router.navigate(['project-page']);
+        this.router.navigate(['project-page'],navigateExtra);
       }, err => {
         error => console.log('error ', error);
       }

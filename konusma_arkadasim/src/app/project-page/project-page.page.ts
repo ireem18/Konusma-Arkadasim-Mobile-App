@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 import {FileTransfer,FileUploadOptions,FileTransferObject} from '@ionic-native/file-transfer/ngx';
 import {FileChooser} from '@ionic-native/file-chooser/ngx';
 import {FilePath} from '@ionic-native/file-path/ngx';
+import {PageGirisPage} from '../page-giris/page-giris.page'
 
 import { UploadingService } from  '../uploading.service';
 import { FileUploader, FileLikeObject } from  'ng2-file-upload';
@@ -34,11 +35,17 @@ export class ProjectPagePage implements OnInit {
 
   public fileUploader: FileUploader = new FileUploader({});
   public hasBaseDropZoneOver: boolean = false;
-
-  constructor(private router: Router,private media:Media,private file:File,private transfer:FileTransfer,private filePath:FilePath,private fileChooser:FileChooser,private uploadingService: UploadingService) 
+  data:any;
+  constructor(private router: Router,private route: ActivatedRoute, private media:Media,private file:File,private transfer:FileTransfer,private filePath:FilePath,private fileChooser:FileChooser,private uploadingService: UploadingService) 
   { 
     this.uploadText = "";
     this.dowloadText = "";
+    this.route.queryParams.subscribe(params => {
+      console.log("params:",params);
+      if(params && params.special){
+        this.data = params.special;
+      }
+    });
 
   }
   ngOnInit() {
@@ -59,14 +66,14 @@ export class ProjectPagePage implements OnInit {
     
     let files = this.getFiles();
     let requests = [];
-    let name = 'irem';
+    let name = this.data;
     let duraklama = '2';
 
     files.forEach((file) => {
       let formData = new FormData();
       formData.append('file' , file.rawFile, file.name);
       formData.append('user',name);
-      formData.append('duraction_time',duraklama);
+      formData.append('duraction_time',this.timeArray);
       requests.push(this.uploadingService.uploadFormData(formData));
 
     });
@@ -125,8 +132,8 @@ export class ProjectPagePage implements OnInit {
      const text = minutes + ':' + seconds;
      console.log(text);
      this.status = "duraklama noktası alındı...";
-     this.timeArray.push(text);
-     console.log(this.timeArray);
+     this.timeArray.push(this.timer);
+     console.log(this.timer);
     }
  
    updateTimeValue(){
