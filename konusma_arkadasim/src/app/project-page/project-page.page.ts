@@ -31,6 +31,7 @@ export class ProjectPagePage implements OnInit {
   dowloadText:any;
   fileTransfer:FileTransferObject;
 
+
   public fileUploader: FileUploader = new FileUploader({});
   public hasBaseDropZoneOver: boolean = false;
 
@@ -58,10 +59,14 @@ export class ProjectPagePage implements OnInit {
     
     let files = this.getFiles();
     let requests = [];
+    let name = 'irem';
+    let duraklama = '2';
 
     files.forEach((file) => {
       let formData = new FormData();
       formData.append('file' , file.rawFile, file.name);
+      formData.append('user',name);
+      formData.append('duraction_time',duraklama);
       requests.push(this.uploadingService.uploadFormData(formData));
 
     });
@@ -119,7 +124,9 @@ export class ProjectPagePage implements OnInit {
  
      const text = minutes + ':' + seconds;
      console.log(text);
-     this.status = "duraklama noktası alındı..."
+     this.status = "duraklama noktası alındı...";
+     this.timeArray.push(text);
+     console.log(this.timeArray);
     }
  
    updateTimeValue(){
