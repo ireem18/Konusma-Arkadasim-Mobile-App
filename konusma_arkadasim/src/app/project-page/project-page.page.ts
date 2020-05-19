@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute,NavigationExtras } from '@angular/router';
 import {OfferpagePage} from '../offerpage/offerpage.page';
 import {Media,MediaObject} from "@ionic-native/media/ngx";
 import {File} from "@ionic-native/file/ngx";
@@ -8,10 +8,13 @@ import {FileTransfer,FileUploadOptions,FileTransferObject} from '@ionic-native/f
 import {FileChooser} from '@ionic-native/file-chooser/ngx';
 import {FilePath} from '@ionic-native/file-path/ngx';
 import {PageGirisPage} from '../page-giris/page-giris.page'
-
+import { UserService } from '../user.service';
 import { UploadingService } from  '../uploading.service';
 import { FileUploader, FileLikeObject } from  'ng2-file-upload';
 import { concat } from  'rxjs';
+import { NavController } from '@ionic/angular';
+
+
 
 @Component({
   selector: 'app-project-page',
@@ -31,12 +34,16 @@ export class ProjectPagePage implements OnInit {
   uploadText:any;
   dowloadText:any;
   fileTransfer:FileTransferObject;
+  wordDetails:any = [];
 
 
   public fileUploader: FileUploader = new FileUploader({});
   public hasBaseDropZoneOver: boolean = false;
   data:any;
-  constructor(private router: Router,private route: ActivatedRoute, private media:Media,private file:File,private transfer:FileTransfer,private filePath:FilePath,private fileChooser:FileChooser,private uploadingService: UploadingService) 
+  constructor(private router: Router,private userService:UserService,private route: ActivatedRoute, 
+    private media:Media,private file:File,
+    private transfer:FileTransfer,private filePath:FilePath,private fileChooser:FileChooser,
+    private uploadingService: UploadingService,private navCtrl:NavController) 
   { 
     this.uploadText = "";
     this.dowloadText = "";
@@ -80,16 +87,31 @@ export class ProjectPagePage implements OnInit {
 
     concat(...requests).subscribe(
       (res) => {
-        console.log(res);
+        let navigateExtra: NavigationExtras = {
+          queryParams:{
+            wordArray: res,
+          }
+        }
+
+        this.router.navigate(['offerpage'],navigateExtra);
+        console.log(res)
       },
       (err) => {  
         console.log(err);
       }
     );
   }
+  GetWordsDetails(){
+    this.userService.GetWordsDJANGO().subscribe((words)=> {
+      var anyData = <any>words;
+      this.wordDetails = anyData.words;
+    })
+  }  
 
   goOfferPage(){
+    
     this.router.navigate(['offerpage']);
+
   }
   RecordAudio(){
     this.audioFile.startRecord();
@@ -103,7 +125,7 @@ export class ProjectPagePage implements OnInit {
     setTimeout(() => 
     {
       this.uploadFiles();
-    },5000);
+    },10000);
     
   }
 
@@ -119,8 +141,7 @@ export class ProjectPagePage implements OnInit {
   stopTimer(){
     clearInterval(this.interval);
     this.time.next('00:00');
-  
-   }
+  }
  
    DurationTimer(){
      let minutes :any = this.timer / 60;
@@ -132,8 +153,8 @@ export class ProjectPagePage implements OnInit {
      const text = minutes + ':' + seconds;
      console.log(text);
      this.status = "duraklama noktası alındı...";
-     this.timeArray.push(this.timer);
-     console.log(this.timer);
+     this.timeArray.push(this.timer-1);
+     console.log(this.timer-1);
     }
  
    updateTimeValue(){
@@ -142,7 +163,7 @@ export class ProjectPagePage implements OnInit {
  
      minutes = String ('0' + Math.floor(minutes)).slice(-2);
      seconds = String ('0' + Math.floor(seconds)).slice(-2);
- 
+     
      const text = minutes + ':' + seconds;
      this.time.next(text);
  
@@ -150,10 +171,9 @@ export class ProjectPagePage implements OnInit {
  
      if (this.timer<0){
        this.startTimer();
-     }
+      }
  
-   }
-
+  }
 }
 
 /*

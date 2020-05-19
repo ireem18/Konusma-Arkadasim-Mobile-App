@@ -23,6 +23,8 @@ urlpatterns = [
     path('api/',include('user.urls')),
     path('upload/', include('uploadapp.urls')),
     path('api2/', include('LoginUser.urls')),
+    path('api/', include('word.urls')),
+    path('api3/',include('wordUpload.urls')),
 ]
 
 if settings.DEBUG:

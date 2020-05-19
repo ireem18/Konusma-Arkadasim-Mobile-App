@@ -41,7 +41,7 @@ export class PageGirisPage implements OnInit {
     this.userService.LoginUser(this.input).subscribe(
       response =>{
         console.log(response);
-        alert('Kişi '+ this.input.username + 'logged');
+        //alert('Kişi '+ this.input.username + 'logged');
         this.router.navigate(['project-page'],navigateExtra);
       }, err => {
         error => console.log('error ', error);

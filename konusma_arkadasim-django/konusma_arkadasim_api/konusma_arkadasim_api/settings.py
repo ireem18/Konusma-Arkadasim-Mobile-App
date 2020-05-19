@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'user',
     'LoginUser',
     'uploadapp',
+    'word',
+    'wordUpload',
     'rest_framework', # api2 kullanmak için
     'corsheaders',  # veri çekip alabilmek için
     'rest_framework.authtoken', # rest_frameworku kullanırken admin hatası ve token alabilmek için veremeliyiz

@@ -14,4 +14,12 @@ export class UploadingService {
   public uploadFormData(formData){
     return this.http.post<any>('http://127.0.0.1:8000/upload/',formData);
   }
+
+  public uploadWordFile(formData){
+    return this.http.post<any>('http://127.0.0.1:8000/api3/',formData);
+  }
+
+  public uploadWordData(formData){
+    return this.http.post<any>('http://127.0.0.1:8000/api/words/',formData);
+  }
 }

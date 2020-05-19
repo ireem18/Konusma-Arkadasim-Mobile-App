@@ -12,6 +12,9 @@ import sys
 from python_speech_features import mfcc
 import scipy.io.wavfile as wav
 
+path ='C:/Users/Lenovo/Desktop/django-ionic/konusma_arkadasim-django/konusma_arkadasim_api/audio_hmm/hmm_word'
+
+
 def loadModels():
 
     global model_haber,model_asker,model_kafa,model_yemek,model_sevmek,model_ilce;
@@ -20,122 +23,122 @@ def loadModels():
     global model_uzun,model_kuru,model_uludag,model_ruya,model_ucret,model_utu;
 
 
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'haber')
+    hmmPath2 = os.path.join(path, 'haber')
     file = open(hmmPath2,"rb")
     model_haber = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'asker')
+    hmmPath2 = os.path.join(path, 'asker')
     file = open(hmmPath2,"rb")
     model_asker = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'kafa')
+    hmmPath2 = os.path.join(path, 'kafa')
     file = open(hmmPath2,"rb")
     model_kafa = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'sevmek')
+    hmmPath2 = os.path.join(path, 'sevmek')
     file = open(hmmPath2,"rb")
     model_sevmek = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'yemek')
+    hmmPath2 = os.path.join(path, 'yemek')
     file = open(hmmPath2,"rb")
     model_yemek = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'ilce')
+    hmmPath2 = os.path.join(path, 'ilce')
     file = open(hmmPath2,"rb")
     model_ilce = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'yaris')
+    hmmPath2 = os.path.join(path, 'yaris')
     file = open(hmmPath2,"rb")
     model_yaris = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'hizli')
+    hmmPath2 = os.path.join(path, 'hizli')
     file = open(hmmPath2,"rb")
     model_hizli = pickle.load(file)
     file.close()
     
-    hmmPath = os.path.join('../audio_hmm/hmm_word', 'irmak')
+    hmmPath2 = os.path.join(path, 'irmak')
     file = open(hmmPath2,"rb")
     model_irmak = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'cizgi')
+    hmmPath2 = os.path.join(path, 'cizgi')
     file = open(hmmPath2,"rb")
     model_cizgi = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'isim')
+    hmmPath2 = os.path.join(path, 'isim')
     file = open(hmmPath2,"rb")
     model_isim = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'pilot')
+    hmmPath2 = os.path.join(path, 'pilot')
     file = open(hmmPath2,"rb")
     model_pilot = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'olta')
+    hmmPath2 = os.path.join(path, 'olta')
     file = open(hmmPath2,"rb")
     model_olta = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'kosmak')
+    hmmPath2 = os.path.join(path, 'kosmak')
     file = open(hmmPath2,"rb")
     model_kosmak = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'cocuk')
+    hmmPath2 = os.path.join(path, 'cocuk')
     file = open(hmmPath2,"rb")
     model_cocuk = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'ordek')
+    hmmPath2 = os.path.join(path, 'ordek')
     file = open(hmmPath2,"rb")
     model_ordek = pickle.load(file)
     file.close()
-    
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'gol')
+
+    hmmPath2 = os.path.join(path, 'gol')
     file = open(hmmPath2,"rb")
     model_gol = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'kotu')
+    hmmPath2 = os.path.join(path, 'kotu')
     file = open(hmmPath2,"rb")
     model_kotu = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'uzun')
+    hmmPath2 = os.path.join(path, 'uzun')
     file = open(hmmPath2,"rb")
     model_uzun = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'kuru')
+    hmmPath2 = os.path.join(path, 'kuru')
     file = open(hmmPath2,"rb")
     model_kuru = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'uludag')
+    hmmPath2 = os.path.join(path, 'uludag')
     file = open(hmmPath2,"rb")
     model_uludag = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'ruya')
+    hmmPath2 = os.path.join(path, 'ruya')
     file = open(hmmPath2,"rb")
     model_ruya = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'ucret')
+    hmmPath2 = os.path.join(path, 'ucret')
     file = open(hmmPath2,"rb")
     model_ucret = pickle.load(file)
     file.close()
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', 'utu')
+    hmmPath2 = os.path.join(path, 'utu')
     file = open(hmmPath2,"rb")
     model_utu = pickle.load(file)
     file.close()
@@ -204,24 +207,26 @@ def testWav(file):
     if (t == modelSkorUtu): return 'utu'
 
     
-if __name__ == '__main__':
+def testing(fileName,file):
     loadModels()
-    dogru=0
+    dogru = True
+    yanliss = False
     yanlis=0
     yanlis_dizi=[]
-    fileName = 'C:/Users/Lenovo/Desktop/TEZ/tezz/tez_siniflandirici/ses/kelime'
-    kelime = ['asker','sevmek','uludag','gol','isim','kafa','olta','haber']
-    for element in kelime:
-       testFile = fileName+'/'+element+'.wav'
-       sonuc = testWav(testFile)
-       if (str(element)  == sonuc):
-           print(" kelime : "+sonuc)
-           dogru+=1
-       else:
-           print("yanliş tahmin edildi !! \t doğrusu : "+str(element)+"\t tahmin edilen : "+sonuc)
-           yanlis+=1
-           yanlis_dizi.append(str(element))
-    
+    testFile = fileName
+    sonuc = testWav(testFile)
+    file = file.replace(".wav","")
+    if (file  == sonuc):
+        print(" Kelime : "+sonuc)
+        sonuc = dogru
+        return sonuc
+    else:
+        print("yanliş tahmin edildi !! \t doğrusu : "+ file +"\t tahmin edilen : "+sonuc)
+        yanlis+=1
+        yanlis_dizi.append(file)
+        sonuc = yanliss
+        return sonuc
+    return yanlis_dizi
  
             
             

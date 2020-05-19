@@ -10,6 +10,10 @@ export class UserService {
   constructor(public http:HttpClient) { }
 
   GetUsersDJANGO(){
-    return this.http.get("http://127.0.0.1:8000/api/users/");
+    return this.http.get("http://127.0.0.1:8000/api/words/");
+  } 
+
+  GetWordsDJANGO(){
+    return this.http.get("http://127.0.0.1:8000/api/words/");
   } 
 }

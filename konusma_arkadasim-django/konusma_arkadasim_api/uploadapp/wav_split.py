@@ -1,12 +1,16 @@
+import time
+
 import librosa
 from pydub import AudioSegment
 
 file_path='C:/Users/Lenovo/Desktop/django-ionic/konusma_arkadasim-django/konusma_arkadasim_api/media/'
 def wav_split(fileName, seconds, ad):
+    print(fileName)
     readWav = AudioSegment.from_wav(fileName)
+    print("22222222222")
     for i in seconds:
-        t1 = (i - 1) * 500
-        t2 = (i + 1) * 500
+        t1 = (i - 0.5 ) * 1000
+        t2 = (i + 0.5 ) * 1000
         print("t1 : ", t1)
         print("t2 : ", t2)
         newWav = readWav[t1:t2]

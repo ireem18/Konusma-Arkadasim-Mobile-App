@@ -1,16 +1,17 @@
-# -*- coding: utf-8 -*-
-
-
 import os
 import pickle
 import numpy as np
 from python_speech_features import mfcc
 import scipy.io.wavfile as wav
+from hmmlearn import hmm
+import numpy as np
+
+
 
 def trainmodel ( model, wavlist):
     X = np.array([])
     for wavfile in wavlist:
-        path = os.path.join('../audio_hmm/train_audio', wavfile)
+        path = os.path.join('C:/Users/Lenovo/Desktop/django-ionic/konusma_arkadasim-django/konusma_arkadasim_api/audio_hmm/train_audio', wavfile)
         (rate, sig) = wav.read(path)
         mfcc_feat = mfcc(sig,rate,nfft=4096)
         
@@ -22,7 +23,7 @@ def trainmodel ( model, wavlist):
     modelHarf = hmm.GaussianHMM(n_components=6,covariance_type='diag',n_iter=1000)
     modelHarf.fit(X)
     
-    hmmPath = os.path.join('../audio_hmm/hmm', model)
+    hmmPath = os.path.join('C:/Users/Lenovo/Desktop/django-ionic/konusma_arkadasim-django/konusma_arkadasim_api/audio_hmm/hmm', model)
     file = open(hmmPath,"wb")
     pickle.dump(modelHarf,file)
     file.close()
@@ -43,9 +44,3 @@ def main ():
 if __name__ == '__main__':
     main()
 
-    
-
-
-
-
-    

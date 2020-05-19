@@ -15,7 +15,7 @@ from hmmlearn import hmm
 def trainmodel2 ( model, wavlist):
     X = np.array([])
     for wavfile in wavlist:
-        path = os.path.join('../audio_hmm/train_audio_word', wavfile)
+        path = os.path.join('C:/Users/Lenovo/Desktop/django-ionic/konusma_arkadasim-django/konusma_arkadasim_api/audio_hmm/train_audio_word', wavfile)
         (rate, sig) = wav.read(path)
         mfcc_feat = mfcc(sig,rate,nfft=4096)
         
@@ -28,7 +28,7 @@ def trainmodel2 ( model, wavlist):
     modelHarf.fit(X)
     
     
-    hmmPath2 = os.path.join('../audio_hmm/hmm_word', model)
+    hmmPath2 = os.path.join('C:/Users/Lenovo/Desktop/django-ionic/konusma_arkadasim-django/konusma_arkadasim_api/audio_hmm/hmm_word', model)
     file = open(hmmPath2,"wb")
     pickle.dump(modelHarf,file)
     file.close()
