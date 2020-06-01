@@ -1,0 +1,30 @@
+ion-content.background{
+    --background: url(../../assets/images/soft2.jpg) 0 0/100% 100% no-repeat;
+  }
+
+  .nedir-div{
+      margin:10px;
+      color:black;
+  }
+  .image{
+      margin: auto;
+      width:400px;
+      height: 200px;
+      justify-content:center!important;
+      display: flex;
+      justify-content: center;
+      align-self: center;
+  }
+  .header{
+    font-size: 20px;
+    color:#EF0031;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    height: 30px;
+    text-align: center;
+    font-style: oblique;
+}
+
+.metin-image{
+    height: 15px;
+    width: 20px;
+}

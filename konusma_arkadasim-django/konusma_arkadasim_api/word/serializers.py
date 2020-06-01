@@ -6,5 +6,5 @@ from .models import offerWord
 class WordSerializer(serializers.ModelSerializer):
     class Meta :
         model = offerWord
-        fields =['id','letter','word','image']
+        fields =['id','letter','word','image','listenAudioFile']
 
