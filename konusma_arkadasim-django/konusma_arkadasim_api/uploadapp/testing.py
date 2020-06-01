@@ -149,5 +149,10 @@ def testing(seconds, ad):
             """
         print(" tahmin edilen : " + sonuc)
         dizi.append(sonuc)
-    return dizi
+        list2 = []
+
+        for i in dizi:
+            if i not in list2:
+                list2.append(i)
+    return list2
     # print(testWav(testFile))

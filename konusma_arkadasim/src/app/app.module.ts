@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {Media} from "@ionic-native/media/ngx";
@@ -29,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     FileTransfer,
     FileChooser,
     FilePath,
+
   ],
   bootstrap: [AppComponent]
 })

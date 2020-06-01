@@ -8,60 +8,43 @@
 </ion-header>
 
 
-<ion-content class="background">
+<ion-content class="background" >
 
 <div class="hidden-div" [hidden] = "isShow">
 <div >
+  <p class="motivation-container">Bilgilendirme Maili Gönderilmiştir. </p>
   <p>Kelimeler bir önceki sayfada alınan duraklama noktalarına göre belirlenmiştir. </p>
   <p>Daha fazla bilgi almak için lüften "Nasıl Kullanılır" sayfasını ziyaret ediniz</p>
 </div>
 <ion-button class = "offer-first-button"expand ="block"  (click)="GetWordsDetails()"> Hadi Başlayalım </ion-button>
 <!--Sınıflandırıcıdan gelen kelimeler yer alır -->
 </div>
+<ion-slides pager="true" >
+<ion-slide style="margin-top: 10px;" *ngFor="let words of esit_dizi" padding>
 
-<div *ngFor = "let words of esit_dizi">
-  <!--
-  <ion-item>
-    {{words.word}}  
-  </ion-item>
-  <ion-item>
-    {{words.id}}  
-  </ion-item>
-  <ion-item>
-    {{words.letter}}
-  </ion-item>
-  -->
-<ion-avatar class="offer-img-container">
-  <img class="offer-image" src="http://127.0.0.1:8000{{words.image}}">
-</ion-avatar>
-<div class="offer-header-container">
-  <h3><b> {{words.word}}  </b></h3>
+  <ion-avatar class="offer-img-container">
+    <img class="offer-image" src="http://127.0.0.1:8000{{words.image}}">
+  </ion-avatar>
+  <div class="slider-div" >
+  <div class="offer-header-container">
+    <h3><b> {{words.word}}  </b></h3>
+  </div>
+  <p class="offer-text">Kelimeyi söylemeden önce kayıtı başlatmalısın :)</p>
+  <p class="offer-text">({{words.letter}} harfi için önerildi)</p>
+  <div class="offer-button-ortala">
+    <ion-button class="background" (click)="RecordAudio()" ></ion-button>
+    <ion-button class="background2" (click)="StopRecording()"  expand="block">
+      <input class ="color-white" type="file" accept="/*" ng2FileSelect [uploader]="fileUploader" multiple />
+    </ion-button>
+  </div>
 </div>
-<p class="offer-text">Kelimeyi söylemeden önce kayıtı başlatmalısın :)</p>
-<p class="offer-text">({{words.letter}} harfi için önerildi)</p>
-<div class="offer-button-ortala">
-  <ion-button class="background" (click)="RecordAudio()" ></ion-button>
-  <ion-button class="background2" (click)="StopRecording()"  expand="block">
-    <input class ="color-white" type="file" accept="/*" ng2FileSelect [uploader]="fileUploader" multiple />
-  </ion-button>
-</div>
-</div>
-<h3>{{status}}</h3>
 
-<div class="rightOrWrong" >
-  <p *ngIf="motiveRightOrWrong" class="motivation-container">{{motiveText}}</p>
-  <img *ngIf="motiveRightOrWrong" class="motivation-right-gif" src={{gif}}>
- </div> 
+</ion-slide>
+</ion-slides>
 
 </ion-content>
 
 
-
-<ul>
-  <li *ngFor="let item of fileUploader.queue">
-    {{ item?.file?.name }}
-  </li>
-</ul>
 
 
 <!--

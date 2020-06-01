@@ -9,6 +9,8 @@ import {FileTransfer,FileUploadOptions,FileTransferObject} from '@ionic-native/f
 import {FileChooser} from '@ionic-native/file-chooser/ngx';
 import {FilePath} from '@ionic-native/file-path/ngx';
 import { ActivatedRoute } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-offerpage',
@@ -43,7 +45,8 @@ export class OfferpagePage implements OnInit {
 
   constructor(private userService:UserService,private route: ActivatedRoute,private media:Media,private file:File,
     private transfer:FileTransfer,private filePath:FilePath,
-    private fileChooser:FileChooser,private uploadingService: UploadingService) 
+    private fileChooser:FileChooser,private uploadingService: UploadingService,public alertController: AlertController,
+    ) 
   { 
     this.uploadText = "";
     this.dowloadText = "";
@@ -60,19 +63,21 @@ export class OfferpagePage implements OnInit {
   ngOnInit() {
   }
 
+ 
   fileOverBase(event): void {
     this.hasBaseDropZoneOver = event;
   }
 
   getFiles(): FileLikeObject[] {
+    
     return this.fileUploader.queue.map((fileItem) => {
       return fileItem.file;
-
+     
     });
+
   }
 
   uploadFiles() {
-    
     let files = this.getFiles();
     let requests = [];
     let name:string = 'irem'
@@ -82,7 +87,7 @@ export class OfferpagePage implements OnInit {
       formData.append('file' , file.rawFile, file.name);
       formData.append('user',name);
       requests.push(this.uploadingService.uploadWordFile(formData));
-
+      
     });
 
     concat(...requests).subscribe(
@@ -99,17 +104,48 @@ export class OfferpagePage implements OnInit {
   }
 
   motiveRightOrWrong(){
+    
     if(this.motive == true){
-      this.motiveText = "TEBRİKLER DOGRU ";
+      this.presentAlertTrue();
+   
+     // this.motiveText = "TEBRİKLER DOGRU ";
       this.gif = "../../assets/gifs/tenor.gif" 
     }
     else{
-      this.motiveText = "HADİ TEKRAR DENEYELİM"
+      this.presentAlertFalse();
+
+     // this.motiveText = "HADİ TEKRAR DENEYELİM"
       this.gif = "../../assets/gifs/false3.gif" 
 
     }
   }
  
+  async presentAlertTrue() {
+    const alert = await this.alertController.create({
+      header: 'SONUÇ',
+      message: 'TEBRİKLER DOGRU',
+      buttons: ['TAMAM'],
+    });
+  
+    await alert.present();
+    let result = await alert.onDidDismiss();
+    console.log(result);
+    this.fileUploader.queue.splice;
+  }
+
+  async presentAlertFalse() {
+    const alert = await this.alertController.create({
+      header: 'SONUÇ',
+      message: 'HADİ TEKRAR DENEYELİM',
+      buttons: ['TAMAM'],
+    });
+  
+    await alert.present();
+    let result = await alert.onDidDismiss();
+    console.log(result);
+  }
+
+  
   RecordAudio(){
     this.audioFile.startRecord();
     this.status = "kayıt..."
@@ -121,6 +157,7 @@ export class OfferpagePage implements OnInit {
     this.stopTimer();
     setTimeout(() => 
     {
+
       this.uploadFiles();
     },10000);
     
@@ -162,7 +199,6 @@ export class OfferpagePage implements OnInit {
       this.userService.GetWordsDJANGO().subscribe((words)=> {
         var anyData = <any>words;
         this.wordDetails = anyData.words;
-        this.Delete()
         this.Letter2()
       })
       this.isShow = !this.isShow; //divi gizliyor
@@ -185,8 +221,7 @@ export class OfferpagePage implements OnInit {
       for(let i = 0; i< this.data.length;i++){
         for(let j =1; j< this.data.length;j++){
           if(this.data[i] == this.data[j]){
-            this.data.push(this.data[j]);
-            this.data.splice(j,1);
+            this.data[i] = this.data[i].replace(this.data[i],'');
           }
         }
       }
