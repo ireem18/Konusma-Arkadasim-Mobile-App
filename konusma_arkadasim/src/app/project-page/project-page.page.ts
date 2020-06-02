@@ -15,7 +15,6 @@ import { concat } from  'rxjs';
 import { NavController } from '@ionic/angular';
 
 
-
 @Component({
   selector: 'app-project-page',
   templateUrl: './project-page.page.html',
@@ -82,7 +81,6 @@ export class ProjectPagePage implements OnInit {
       formData.append('user',name);
       formData.append('duraction_time',this.timeArray);
       requests.push(this.uploadingService.uploadFormData(formData));
-
     });
 
     concat(...requests).subscribe(
@@ -92,14 +90,16 @@ export class ProjectPagePage implements OnInit {
             wordArray: res,
           }
         }
-
         this.router.navigate(['offerpage'],navigateExtra);
         console.log(res)
       },
       (err) => {  
         console.log(err);
+        alert("İlk saniye de duraklama noktasına basıldığı için hata gerçekleşti.Lütfen tekrar giriş yapınız...")
       }
     );
+    this.fileUploader.queue.pop();
+
   }
   GetWordsDetails(){
     this.userService.GetWordsDJANGO().subscribe((words)=> {
@@ -114,6 +114,7 @@ export class ProjectPagePage implements OnInit {
 
   }
   RecordAudio(){
+    this.timeArray = [];
     this.audioFile.startRecord();
     this.status = "kayıt..."
     this.startTimer();

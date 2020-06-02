@@ -24,7 +24,6 @@ class FileUploadWordView(APIView):  # Api görünümü vermek için kullanıyoru
             file =str(QueryDict['file'])
             #hmm_train_word.main()
             sonuc = testing_word.testing(fileName=fileName,file=file)
-
             return Response(sonuc, status=status.HTTP_201_CREATED)
         else:
             return Response(file_serializer2.errors, status=status.HTTP_400_BAD_REQUEST)

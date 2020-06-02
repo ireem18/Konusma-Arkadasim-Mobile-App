@@ -16,6 +16,7 @@ class offerWord(models.Model):
     ]
     letter = models.CharField(choices=LETTER,max_length=1)
     word = models.CharField(max_length=10)
+    wordName = models.CharField(max_length=10)
     image = models.ImageField(upload_to='images/')
     listenAudioFile = models.FileField(null=False)
 

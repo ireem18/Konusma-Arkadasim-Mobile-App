@@ -10,7 +10,7 @@ import {FileChooser} from '@ionic-native/file-chooser/ngx';
 import {FilePath} from '@ionic-native/file-path/ngx';
 import { ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-
+import { NativeRingtones } from '@ionic-native/native-ringtones/ngx';
 
 @Component({
   selector: 'app-offerpage',
@@ -39,6 +39,7 @@ export class OfferpagePage implements OnInit {
   motive:any;
   motiveText:any;
   gif:any;
+  listenAudioFileName:any;
 
   public fileUploader: FileUploader = new FileUploader({});
   public hasBaseDropZoneOver: boolean = false;
@@ -46,7 +47,7 @@ export class OfferpagePage implements OnInit {
   constructor(private userService:UserService,private route: ActivatedRoute,private media:Media,private file:File,
     private transfer:FileTransfer,private filePath:FilePath,
     private fileChooser:FileChooser,private uploadingService: UploadingService,public alertController: AlertController,
-    ) 
+    private ringtones: NativeRingtones) 
   { 
     this.uploadText = "";
     this.dowloadText = "";
@@ -58,11 +59,17 @@ export class OfferpagePage implements OnInit {
       }
      
     });
+    
 
   }
   ngOnInit() {
   }
 
+  playAudioFile(listenAudioFile){
+    this.listenAudioFileName = listenAudioFile;
+    this.ringtones.playRingtone(this.listenAudioFileName);
+    console.log("listenAudioFile",this.listenAudioFileName);
+  }
  
   fileOverBase(event): void {
     this.hasBaseDropZoneOver = event;
@@ -89,7 +96,6 @@ export class OfferpagePage implements OnInit {
       requests.push(this.uploadingService.uploadWordFile(formData));
       
     });
-
     concat(...requests).subscribe(
       (res) => {
         console.log(res );
@@ -101,6 +107,8 @@ export class OfferpagePage implements OnInit {
         console.log(err);
       }
     );
+    this.fileUploader.queue.pop();
+
   }
 
   motiveRightOrWrong(){
@@ -151,7 +159,10 @@ export class OfferpagePage implements OnInit {
     this.status = "kayıt..."
     this.startTimer();
   }
-  StopRecording(){
+  StopRecording(wordName){
+    this.uploadForName = wordName;
+    //wordName turkce karakter bulundurmamalı
+    console.log(wordName);
     this.audioFile.stopRecord();
     this.status = "kaydedildi..."
     this.stopTimer();
@@ -209,10 +220,10 @@ export class OfferpagePage implements OnInit {
         for(let i=0;i<this.wordDetails.length;i++){
           if(this.data[j] == this.wordDetails[i].letter){
               console.log("eşit olan ", this.wordDetails[i].letter)
-              this.uploadForName = this.wordDetails[i].word
               this.esit_dizi.push(this.wordDetails[i]);
               console.log(this.esit_dizi);
           }
+
         }
       }
     }

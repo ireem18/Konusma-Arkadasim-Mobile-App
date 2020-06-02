@@ -13,6 +13,7 @@ import {FileTransfer} from '@ionic-native/file-transfer/ngx';
 import {FileChooser} from '@ionic-native/file-chooser/ngx';
 import {FilePath} from '@ionic-native/file-path/ngx';
 import { HttpClientModule } from '@angular/common/http';
+import { NativeRingtones } from '@ionic-native/native-ringtones/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,8 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     FileTransfer,
     FileChooser,
     FilePath,
-
-
+    NativeRingtones,
   ],
   bootstrap: [AppComponent]
 })

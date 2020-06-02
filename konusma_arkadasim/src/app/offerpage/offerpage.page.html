@@ -12,7 +12,7 @@
 
 <div class="hidden-div" [hidden] = "isShow">
 <div >
-  <p class="motivation-container">Bilgilendirme Maili Gönderilmiştir. </p>
+ <!-- <p class="motivation-container">Bilgilendirme Maili Gönderilmiştir. </p> -->
   <p>Kelimeler bir önceki sayfada alınan duraklama noktalarına göre belirlenmiştir. </p>
   <p>Daha fazla bilgi almak için lüften "Nasıl Kullanılır" sayfasını ziyaret ediniz</p>
 </div>
@@ -33,17 +33,17 @@
   <p class="offer-text">({{words.letter}} harfi için önerildi)</p>
   <div class="offer-button-ortala">
     <ion-button class="background" (click)="RecordAudio()" ></ion-button>
-    <ion-button class="background2" (click)="StopRecording()"  expand="block">
+    <ion-button class="background2" (click)="StopRecording(words.wordName)"  expand="block">
       <input class ="color-white" type="file" accept="/*" ng2FileSelect [uploader]="fileUploader" multiple />
     </ion-button>
   </div>
-  <div style="margin-top: 25px;"></div>
+  <div>
+    <ion-button style="margin-top: 20px;" class="" (click)="playAudioFile(words.listenAudioFile)">Dinlemek İster Misin?</ion-button>
+  </div>
+  <div style="margin-top: 5px;"></div>
 </div>
-
-
 </ion-slide>
 </ion-slides>
-
 </ion-content>
 
 
